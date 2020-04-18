@@ -3,4 +3,4 @@ libft.a
 *.swp
 *.swo
 *.o
-runtest
+philo_one
