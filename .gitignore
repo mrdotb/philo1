@@ -1,0 +1,6 @@
+obj
+libft.a
+*.swp
+*.swo
+*.o
+runtest
