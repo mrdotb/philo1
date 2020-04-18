@@ -64,7 +64,7 @@ int	main(int argc, char **argv)
 	}
 	pthread_create(&death_thread_id, NULL, &death_thread, philos);
 	pthread_join(death_thread_id, (void**)&death_result);
-	printf("pthread death_join death_result%d\n", *death_result);
+	/* printf("pthread death_join death_result%d\n", *death_result); */
 	if (death_result == NULL)
 		return 1;
 	if (*death_result == 1)
