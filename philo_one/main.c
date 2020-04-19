@@ -14,11 +14,15 @@
 
 int	usage(void)
 {
-	ft_putstr_fd("philo_one\n", 2);
-	ft_putstr_fd("Usage:\n", 2);
-	ft_putstr_fd("philo_one number_of_philosopher time_to_die time_to_eat", 2);
-	ft_putstr_fd(" time_to_sleep", 2);
-	ft_putstr_fd(" [number_of_time_each_philosophers_must_eat]\n", 2);
+	static char usage_str[] =
+
+	GREEN"philo_one\n"RESET
+	"Simulation of the philosopher.\n\n"
+	YELLOW"USAGE:\n    "RESET
+	GREEN"philo_one "RESET
+	"number_of_philosopher time_to_die time_to_eat "
+	"time_to_sleep [number_of_time_each_philosophers_must_eat]\n";
+	ft_putstr_fd(usage_str, 1);
 	return (1);
 }
 
@@ -28,12 +32,12 @@ int	parse_arg(t_args *args, int argc, char **argv)
 	static int	args_tab[5] = {0, 0, 0, 0, 0};
 
 	if (argc < 5 || argc > 6)
-		return (usage());
+		return (1);
 	while (i < argc)
 	{
 		args_tab[i - 1] = ft_atoi(argv[i]);
 		if (args_tab[i - 1] < 1)
-			return (usage());
+			return (1);
 		i++;
 	}
 	args->number_of_philosopher = args_tab[0];
@@ -53,9 +57,9 @@ int	main(int argc, char **argv)
 	int				*death_result;
 
 	if (parse_arg(&args, argc, argv) == 1)
-		return (1);
+		return (usage());
 	if ((philos = create_philos(&args)) == NULL)
-		return (1);
+		return (malloc_error());
 	i = 0;
 	while (i < args.number_of_philosopher)
 	{

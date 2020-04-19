@@ -26,7 +26,8 @@ static t_philo	**create_philos_ex(t_args *args)
 		philos[i] = malloc(sizeof(t_philo));
 		if (philos[i] == NULL)
 			return (NULL);
-		philos[i]->thread_nb = i + 1;
+		if ((philos[i]->thread_nb = ft_itoa_long_un(i + 1)) == NULL)
+			return (NULL);
 		philos[i]->meals = 0;
 		philos[i]->args = args;
 		if (gettimeofday(&(philos[i]->last_meal), NULL) != 0)

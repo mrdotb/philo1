@@ -28,13 +28,6 @@ obj:
 obj/%.o: srcs/%.c
 	$(CC) $(FLAGS) -c -o $@ $<
 
-clean:
-	@rm -f $(OBJS)
-	@rm -rf obj
-
-fclean: clean
-	@rm -f $(NAME)
-
 re: fclean all
 
 .PHONY:clean fclean re
