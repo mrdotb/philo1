@@ -16,7 +16,7 @@ int	pthread_error(void)
 {
 	static char error_str[] =
 
-	RED"pthread error";
+	RED"pthread error\n"RESET;
 	ft_putstr_fd(error_str, 2);
 	return (1);
 
@@ -26,7 +26,7 @@ int	malloc_error(void)
 {
 	static char error_str[] =
 
-	RED"malloc error";
+	RED"malloc error\n"RESET;
 	ft_putstr_fd(error_str, 2);
 	return (1);
 }
