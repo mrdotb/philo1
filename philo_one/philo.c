@@ -49,9 +49,11 @@ int				free_philos(t_philo **philos, t_args *args)
 				return (1);
 		if (pthread_mutex_destroy(&philos[i]->right_fork) != 0)
 			return (1);
+		free(philos[i]->thread_nb);
 		free(philos[i]);
 		i++;
 	}
+	free(philos[i]->thread_nb);
 	free(philos[i]);
 	free(philos);
 	return (0);
@@ -67,17 +69,15 @@ t_philo			**create_philos(t_args *args)
 	while (i < args->number_of_philosopher)
 	{
 		if (i == 0)
-		{
 			if (pthread_mutex_init(&philos[i]->left_fork, NULL) != 0
 					|| pthread_mutex_init(&philos[i]->right_fork, NULL) != 0)
 				return (NULL);
-		}
-		else if (i == args->number_of_philosopher)
+		if (i == args->number_of_philosopher)
 		{
 			philos[i]->left_fork = philos[i - 1]->right_fork;
 			philos[i]->right_fork = philos[0]->left_fork;
 		}
-		else
+		if (i > 0 && i < args->number_of_philosopher)
 		{
 			philos[i]->left_fork = philos[i - 1]->right_fork;
 			if (pthread_mutex_init(&philos[i]->right_fork, NULL) != 0)
