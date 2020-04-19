@@ -26,3 +26,12 @@ void	ft_putstr_fd(char const *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
 }
+
+unsigned long	time_diff(struct timeval *t1, struct timeval *t2)
+{
+	unsigned long diff;
+
+	diff = (t1->tv_sec - t2->tv_sec) * 1000;
+	diff += (t1->tv_usec - t2->tv_usec) / 1000;
+	return (diff);
+}
