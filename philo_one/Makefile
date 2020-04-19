@@ -14,7 +14,7 @@ CC    = gcc
 NAME  = philo_one
 FLAGS = -Wall -Werror -Wextra -g
 LIB   = -lpthread
-SRCS  = main.c minilib1.c minilib2.c philo.c thread.c
+SRCS  = main.c minilib1.c minilib2.c philo.c thread.c error.c log.c
 OBJS  = $(SRCS:srcs/%.c=obj/%.o)
 
 all: obj $(NAME)

@@ -28,9 +28,20 @@
 # define BLUE    "\x1b[34m"
 # define MAGENTA "\x1b[35m"
 # define CYAN    "\x1b[36m"
+# define C_SIZE  16
 # define RESET   "\x1b[0m"
 
 # define ISDIGIT(c) (c >= '0' && c <= '9')
+
+typedef enum		e_msg
+{
+	DEAD = 0,
+	THINKING = 1,
+	L_FORK = 2,
+	R_FORK = 3,
+	EATING = 4,
+	SLEEPING = 5,
+}					t_msg;
 
 typedef struct		s_args
 {
@@ -41,10 +52,10 @@ typedef struct		s_args
 	unsigned int	must_eat;
 }					t_args;
 
-typedef struct 		s_philo
+typedef struct		s_philo
 {
 	pthread_t		thread_id;
-	int				thread_nb;
+	char			*thread_nb;
 	pthread_mutex_t	left_fork;
 	pthread_mutex_t	right_fork;
 	unsigned int	meals;
@@ -60,5 +71,9 @@ t_philo				**create_philos(t_args *args);
 int					free_philos(t_philo **philos, t_args *args);
 void				*thread_start(void	*arg);
 void				*death_thread(void *arg);
+int					pthread_error(void);
+int					malloc_error(void);
+unsigned long		time_diff(struct timeval *t1, struct timeval *t2);
+int					log_status(t_philo *philo, t_msg action);
 
 #endif
